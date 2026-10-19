@@ -9,3 +9,18 @@
   margin: 0 0 24px;
   color: var(--color-muted);
 }
+
+.resetButton {
+  height: 40px;
+  padding: 0 20px;
+  font: inherit;
+  color: #fff;
+  background: var(--color-accent);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  filter: brightness(1.1);
+}

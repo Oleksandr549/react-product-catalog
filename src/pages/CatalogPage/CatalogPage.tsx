@@ -3,6 +3,9 @@ import { getProducts } from '../../api/products'
 import CategoryFilter from '../../components/CategoryFilter/CategoryFilter'
 import ProductGrid from '../../components/ProductGrid/ProductGrid'
 import SearchBar from '../../components/SearchBar/SearchBar'
+import EmptyState from '../../components/ui/EmptyState/EmptyState'
+import ErrorMessage from '../../components/ui/ErrorMessage/ErrorMessage'
+import Loader from '../../components/ui/Loader/Loader'
 import { useFetch } from '../../hooks/useFetch'
 import styles from './CatalogPage.module.css'
 
@@ -11,8 +14,8 @@ export default function CatalogPage() {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('')
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
+  if (loading) return <Loader label="Loading products..." />
+  if (error) return <ErrorMessage title="Could not load products" message={error.message} />
   if (!data) return null
 
   const categories = [...new Set(data.products.map((product) => product.category))]
@@ -23,6 +26,11 @@ export default function CatalogPage() {
     const matchesCategory = category === '' || product.category === category
     return matchesQuery && matchesCategory
   })
+
+  function resetFilters() {
+    setQuery('')
+    setCategory('')
+  }
 
   return (
     <>
@@ -38,7 +46,15 @@ export default function CatalogPage() {
       {filteredProducts.length > 0 ? (
         <ProductGrid products={filteredProducts} />
       ) : (
-        <p>No products found</p>
+        <EmptyState
+          title="No products found"
+          description="Try a different search or category."
+          action={
+            <button type="button" className={styles.resetButton} onClick={resetFilters}>
+              Reset filters
+            </button>
+          }
+        />
       )}
     </>
   )
