@@ -1,0 +1,115 @@
+.back {
+  display: inline-block;
+  margin-bottom: 32px;
+  color: var(--color-muted);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+.back:hover {
+  color: var(--color-ink);
+}
+
+.layout {
+  display: grid;
+  gap: 40px;
+}
+
+@media (min-width: 860px) {
+  .layout {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 64px;
+    align-items: start;
+  }
+
+  .info {
+    position: sticky;
+    top: 32px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.meta a {
+  color: inherit;
+}
+
+.title {
+  font-size: clamp(32px, 4.5vw, 52px);
+}
+
+.priceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.oldPrice {
+  color: var(--color-muted);
+}
+
+.discount {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.facts div {
+  padding: 16px 0;
+}
+
+.facts div + div {
+  padding-left: 20px;
+  border-left: 1px solid var(--color-line);
+}
+
+.facts dt {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.facts dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+.inStock {
+  color: var(--color-success);
+}
+
+.outOfStock {
+  color: var(--color-danger);
+}
+
+.description {
+  max-width: 60ch;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+}

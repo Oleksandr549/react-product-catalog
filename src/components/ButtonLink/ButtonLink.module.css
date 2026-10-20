@@ -1,0 +1,31 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  height: 52px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.primary {
+  padding: 0 28px;
+  color: var(--color-bg);
+  background: var(--color-ink);
+  border-radius: var(--radius-pill);
+}
+
+.primary:hover {
+  background: var(--color-accent);
+}
+
+.secondary {
+  padding: 0 4px;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+}
+
+.secondary:hover {
+  color: var(--color-accent);
+}

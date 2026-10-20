@@ -1,26 +1,37 @@
-.toolbar {
+.heading {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 16px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-bottom: 32px;
 }
 
 .count {
-  margin: 0 0 24px;
+  margin: 0;
   color: var(--color-muted);
 }
 
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 40px;
+  margin-bottom: 56px;
+}
+
 .resetButton {
-  height: 40px;
-  padding: 0 20px;
+  height: 44px;
+  padding: 0 22px;
   font: inherit;
-  color: #fff;
-  background: var(--color-accent);
+  font-weight: 600;
+  color: var(--color-bg);
+  background: var(--color-ink);
   border: 0;
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .resetButton:hover {
-  filter: brightness(1.1);
+  background: var(--color-accent);
 }

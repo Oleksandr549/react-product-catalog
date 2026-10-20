@@ -1,0 +1,22 @@
+.wrapper {
+  padding-block: clamp(32px, 8vw, 96px);
+}
+
+.code {
+  margin: 0;
+  font-size: clamp(120px, 28vw, 320px);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.07em;
+  color: var(--color-tile-hover);
+}
+
+.title {
+  margin: 24px 0 12px;
+}
+
+.text {
+  max-width: 420px;
+  margin: 0 0 32px;
+  color: var(--color-muted);
+}

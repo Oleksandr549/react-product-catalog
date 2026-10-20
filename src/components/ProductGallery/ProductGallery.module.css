@@ -1,0 +1,54 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stage {
+  padding: 10%;
+  background: var(--color-tile);
+  border-radius: var(--radius-tile);
+}
+
+.main {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thumb {
+  padding: 6px;
+  background: var(--color-tile);
+  border: 0;
+  border-radius: var(--radius-tile);
+  box-shadow: inset 0 0 0 1px transparent;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.thumb img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.thumb:hover {
+  box-shadow: inset 0 0 0 1px var(--color-muted);
+}
+
+.active,
+.active:hover {
+  box-shadow: inset 0 0 0 2px var(--color-ink);
+}

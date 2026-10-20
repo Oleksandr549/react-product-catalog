@@ -14,7 +14,7 @@ export default function CatalogPage() {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('')
 
-  if (loading) return <Loader label="Loading products..." />
+  if (loading) return <Loader label="Loading products" />
   if (error) return <ErrorMessage title="Could not load products" message={error.message} />
   if (!data) return null
 
@@ -34,21 +34,24 @@ export default function CatalogPage() {
 
   return (
     <>
-      <h1>Catalog</h1>
+      <div className={styles.heading}>
+        <h1>Catalog</h1>
+        <p className={styles.count}>
+          {filteredProducts.length} of {data.products.length} products
+        </p>
+      </div>
 
       <div className={styles.toolbar}>
         <SearchBar value={query} onChange={setQuery} />
         <CategoryFilter categories={categories} value={category} onChange={setCategory} />
       </div>
 
-      <p className={styles.count}>Found: {filteredProducts.length}</p>
-
       {filteredProducts.length > 0 ? (
         <ProductGrid products={filteredProducts} />
       ) : (
         <EmptyState
-          title="No products found"
-          description="Try a different search or category."
+          title="Nothing matches your search"
+          description="Check the spelling or choose another category."
           action={
             <button type="button" className={styles.resetButton} onClick={resetFilters}>
               Reset filters

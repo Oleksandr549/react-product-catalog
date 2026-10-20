@@ -1,3 +1,4 @@
+import { formatCategory } from '../../utils/format'
 import styles from './CategoryFilter.module.css'
 
 interface CategoryFilterProps {
@@ -18,7 +19,7 @@ export default function CategoryFilter({ categories, value, onChange }: Category
         <option value="">All categories</option>
         {categories.map((category) => (
           <option key={category} value={category}>
-            {category}
+            {formatCategory(category)}
           </option>
         ))}
       </select>

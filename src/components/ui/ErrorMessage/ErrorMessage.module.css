@@ -1,17 +1,13 @@
 .box {
-  max-width: 480px;
-  margin: 48px auto;
-  padding: 24px;
-  text-align: center;
-  background: #fff4f4;
-  border: 1px solid #f3caca;
-  border-radius: var(--radius);
+  max-width: 560px;
+  margin-block: 48px;
+  padding-left: 20px;
+  border-left: 3px solid var(--color-danger);
 }
 
 .title {
   margin: 0 0 8px;
-  font-size: 20px;
-  color: #b42318;
+  font-size: 24px;
 }
 
 .message {
