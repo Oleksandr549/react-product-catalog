@@ -2,7 +2,7 @@
 
 A single-page product catalog built with React and TypeScript. Data comes from the public [DummyJSON](https://dummyjson.com) API.
 
-**Live demo:** _add your Vercel link here_
+**Live demo:** https://react-product-catalog-1airx4va5.vercel.app/
 
 ## Features
 
