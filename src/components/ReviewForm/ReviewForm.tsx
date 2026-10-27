@@ -48,7 +48,7 @@ export default function ReviewForm({ productTitle }: ReviewFormProps) {
   })
 
   const onSubmit: SubmitHandler<ReviewFormValues> = (data) => {
-    // Отзывы пока никуда не отправляются: API для них нет
+  
     console.log({ ...data, rating: Number(data.rating) })
     setSubmittedName(data.name)
     reset()
