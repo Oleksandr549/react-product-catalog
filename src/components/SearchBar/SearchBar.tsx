@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react'
 import styles from './SearchBar.module.css'
 
 interface SearchBarProps {
@@ -6,6 +7,10 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ value, onChange }: SearchBarProps) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    onChange(event.target.value)
+  }
+
   return (
     <label className={styles.field}>
       <span className={styles.label}>Search</span>
@@ -14,7 +19,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
         type="search"
         placeholder="Search products..."
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={handleChange}
       />
     </label>
   )

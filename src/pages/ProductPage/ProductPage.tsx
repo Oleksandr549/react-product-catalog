@@ -4,6 +4,7 @@ import { getProductById } from '../../api/products'
 import ProductGallery from '../../components/ProductGallery/ProductGallery'
 import ErrorMessage from '../../components/ui/ErrorMessage/ErrorMessage'
 import Loader from '../../components/ui/Loader/Loader'
+import ProductForm from '../../components/Form/ProductForm' 
 import { useFetch } from '../../hooks/useFetch'
 import { formatCategory, formatPrice } from '../../utils/format'
 import styles from './ProductPage.module.css'
@@ -84,6 +85,7 @@ export default function ProductPage() {
 
           <p className={styles.description}>{product.description}</p>
         </div>
+        <ProductForm />
       </div>
     </article>
   )

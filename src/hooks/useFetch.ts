@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react'
 
-type Fetcher<T> = (signal: AbortSignal) => Promise<T>
+export type Fetcher<T> = (signal: AbortSignal) => Promise<T>
+
+export interface UseFetchResult<T> {
+  data: T | null
+  error: Error | null
+  loading: boolean
+}
 
 interface FetchResult<T> {
   fetcher: Fetcher<T> | null
@@ -8,7 +14,7 @@ interface FetchResult<T> {
   error: Error | null
 }
 
-export function useFetch<T>(fetcher: Fetcher<T>) {
+export function useFetch<T>(fetcher: Fetcher<T>): UseFetchResult<T> {
   const [result, setResult] = useState<FetchResult<T>>({
     fetcher: null,
     data: null,
