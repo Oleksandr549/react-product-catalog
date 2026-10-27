@@ -1,19 +1,37 @@
 import { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import styles from './ReviewForm.module.css'
 
-interface ReviewFormValues {
-  name: string
-  email: string
-  rating: string
-  comment: string
-}
+const RATINGS = ['1', '2', '3', '4', '5'] as const
+
+const reviewSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, 'Enter your name')
+    .min(2, 'Name is too short')
+    .max(100, 'Name is too long'),
+  email: z
+    .string()
+    .trim()
+    .min(1, 'Enter your email')
+    .pipe(z.email('Enter a valid email')),
+  rating: z.enum(RATINGS, { error: 'Choose a rating' }),
+  comment: z
+    .string()
+    .trim()
+    .min(1, 'Write a few words')
+    .min(10, 'At least 10 characters')
+    .max(500, 'No more than 500 characters'),
+})
+
+type ReviewFormValues = z.infer<typeof reviewSchema>
 
 interface ReviewFormProps {
   productTitle: string
 }
-
-const RATINGS = ['1', '2', '3', '4', '5']
 
 export default function ReviewForm({ productTitle }: ReviewFormProps) {
   const [submittedName, setSubmittedName] = useState<string | null>(null)
@@ -25,11 +43,12 @@ export default function ReviewForm({ productTitle }: ReviewFormProps) {
     formState: { errors },
   } = useForm<ReviewFormValues>({
     mode: 'onTouched',
-    defaultValues: { name: '', email: '', rating: '', comment: '' },
+    resolver: zodResolver(reviewSchema),
+    defaultValues: { name: '', email: '', comment: '' },
   })
 
   const onSubmit: SubmitHandler<ReviewFormValues> = (data) => {
-  
+    // Отзывы пока никуда не отправляются: API для них нет
     console.log({ ...data, rating: Number(data.rating) })
     setSubmittedName(data.name)
     reset()
@@ -66,10 +85,7 @@ export default function ReviewForm({ productTitle }: ReviewFormProps) {
                 type="text"
                 autoComplete="name"
                 aria-invalid={errors.name ? 'true' : 'false'}
-                {...register('name', {
-                  required: 'Enter your name',
-                  minLength: { value: 2, message: 'Name is too short' },
-                })}
+                {...register('name')}
               />
               {errors.name && <span className={styles.error}>{errors.name.message}</span>}
             </label>
@@ -81,10 +97,7 @@ export default function ReviewForm({ productTitle }: ReviewFormProps) {
                 type="email"
                 autoComplete="email"
                 aria-invalid={errors.email ? 'true' : 'false'}
-                {...register('email', {
-                  required: 'Enter your email',
-                  pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' },
-                })}
+                {...register('email')}
               />
               {errors.email && <span className={styles.error}>{errors.email.message}</span>}
             </label>
@@ -99,7 +112,7 @@ export default function ReviewForm({ productTitle }: ReviewFormProps) {
                     className={styles.ratingInput}
                     type="radio"
                     value={value}
-                    {...register('rating', { required: 'Choose a rating' })}
+                    {...register('rating')}
                   />
                   <span className={styles.ratingOption}>{value}</span>
                 </label>
@@ -114,11 +127,7 @@ export default function ReviewForm({ productTitle }: ReviewFormProps) {
               className={`${styles.input} ${styles.textarea}`}
               rows={4}
               aria-invalid={errors.comment ? 'true' : 'false'}
-              {...register('comment', {
-                required: 'Write a few words',
-                minLength: { value: 10, message: 'At least 10 characters' },
-                maxLength: { value: 500, message: 'No more than 500 characters' },
-              })}
+              {...register('comment')}
             />
             {errors.comment && <span className={styles.error}>{errors.comment.message}</span>}
           </label>
